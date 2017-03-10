@@ -1,4 +1,4 @@
-package com.boqin.xgmediaplayermanager;
+package com.boqin.bqmediaplayermananger.view;
 
 /**
  * 播放操作接口，用于与VideoRecyclerViewAutoControlAttacher类进行解耦

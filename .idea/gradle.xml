@@ -9,7 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/bqmediaplayermananger" />
+            <option value="$PROJECT_DIR$/bq_mediaplayer_mananger" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

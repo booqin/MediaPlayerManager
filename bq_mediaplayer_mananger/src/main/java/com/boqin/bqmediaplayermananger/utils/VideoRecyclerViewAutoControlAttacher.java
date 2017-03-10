@@ -1,6 +1,9 @@
-package com.boqin.xgmediaplayermanager;
+package com.boqin.bqmediaplayermananger.utils;
 
 import java.util.Timer;
+
+import com.boqin.bqmediaplayermananger.R;
+import com.boqin.bqmediaplayermananger.view.IPlayerAttacher;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -145,7 +148,7 @@ public final class VideoRecyclerViewAutoControlAttacher{
                             //停止
                             playerAttacherToStop.deactivate();
 //                            playerAttacherToStop.release();
-                            MissApplication.getAppInstance().getPlayerManager().removeCompleteNoAutoPlay(playerAttacherToStop.getPlayerKey());
+//                            MissApplication.getAppInstance().getPlayerManager().removeCompleteNoAutoPlay(playerAttacherToStop.getPlayerKey());
                             //如果ViewHolder位置满足回收的大小,直接释放资源
                             if (videoToStop.itemView.getHeight() - mRect4UpDeactivate.top < mReleaseUpLimit) {
                                 //释放资源
@@ -164,7 +167,7 @@ public final class VideoRecyclerViewAutoControlAttacher{
                         if (videoToStop != null) {
                             IPlayerAttacher playerAttacherToStop = (IPlayerAttacher) videoToStop;
                             playerAttacherToStop.deactivate();
-                            MissApplication.getAppInstance().getPlayerManager().removeCompleteNoAutoPlay(playerAttacherToStop.getPlayerKey());
+//                            MissApplication.getAppInstance().getPlayerManager().removeCompleteNoAutoPlay(playerAttacherToStop.getPlayerKey());
                             if (mRect4DownDeactivate.bottom < mReleaseDownLimit) {
                                 playerAttacherToStop.release();
                             }

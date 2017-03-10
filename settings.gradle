@@ -1,1 +1,1 @@
-include ':app', ':bqmediaplayermananger'
+include ':app', ':bq_mediaplayer_mananger'

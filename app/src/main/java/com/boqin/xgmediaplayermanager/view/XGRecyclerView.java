@@ -1,7 +1,7 @@
 package com.boqin.xgmediaplayermanager.view;
 
-import com.boqin.xgmediaplayermanager.IPlayerAttacher;
-import com.boqin.xgmediaplayermanager.VideoRecyclerViewAutoControlAttacher;
+import com.boqin.bqmediaplayermananger.view.IPlayerAttacher;
+import com.boqin.bqmediaplayermananger.utils.VideoRecyclerViewAutoControlAttacher;
 
 import android.content.Context;
 import android.graphics.Color;
