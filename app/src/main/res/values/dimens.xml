@@ -1,0 +1,27 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+
+    <!--录制视频 -->  l
+
+    <dimen name="camera_focus_area_size">96dp</dimen>
+    <dimen name="recoder_circle_bg_width">150dp</dimen>
+    <dimen name="recoder_circle_bg_height">150dp</dimen>
+
+
+
+
+    <dimen name="action_bar_height">45dp</dimen>
+    <dimen name="action_bar_left_padding">15dp</dimen>
+    <dimen name="action_bar_right_padding">15dp</dimen>
+    <dimen name="action_bar_back_title_padding">10dp</dimen>
+    <dimen name="action_bar_title_text_size">17sp</dimen>
+    <dimen name="action_bar_back_width">45dp</dimen>
+
+
+    <dimen name="post_holder_header_height">52dp</dimen>
+    <dimen name="post_holder_action_container_height">43dp</dimen>
+</resources>
