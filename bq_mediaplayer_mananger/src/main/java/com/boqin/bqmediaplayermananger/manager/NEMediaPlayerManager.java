@@ -49,12 +49,12 @@ public class NEMediaPlayerManager implements Handler.Callback {
     /** 播放器线程表 */
     private Map<String, IMediaPlayer> mPool;
 
-    private static NEMediaPlayerManager mNEMediaPlayerManager;
-
 
     static {
         mPlayerThread.start();
     }
+
+    private NEMediaPlayerImpl value;
 
     /**
      * 构造器
@@ -73,9 +73,7 @@ public class NEMediaPlayerManager implements Handler.Callback {
      */
     public static NEMediaPlayerManager getInstance(){
 
-        mNEMediaPlayerManager = new NEMediaPlayerManager();
-
-        return mNEMediaPlayerManager;
+        return NEMediaPlayerManagerHolder.manager;
     }
 
     @Override
@@ -241,9 +239,19 @@ public class NEMediaPlayerManager implements Handler.Callback {
     }
 
     public void openVideo(String key, String path, Surface surface, boolean isMute, Context context) {
-        NEMediaPlayer mediaPlayer = new NEMediaPlayer();
-        mPool.put(key, new NEMediaPlayerImpl(context, mediaPlayer));
-        prepare(key, path, surface, isMute);
+        if (!mPool.containsKey(key)) {
+            NEMediaPlayer mediaPlayer = new NEMediaPlayer();
+            value = new NEMediaPlayerImpl(context, mediaPlayer);
+            value.setListener(mMediaPlayerListener);
+            mPool.put(key, value);
+            prepare(key, path, surface, isMute);
+        }else {
+            //已经存在
+            mPool.get(key).setSurface(surface);
+            start(key);
+        }
+
+
     }
 
     private void start(String key){
@@ -659,5 +667,9 @@ public class NEMediaPlayerManager implements Handler.Callback {
     public class VideoSize {
         public int width;
         public int height;
+    }
+
+    private static class NEMediaPlayerManagerHolder{
+        public static NEMediaPlayerManager manager = new NEMediaPlayerManager();
     }
 }

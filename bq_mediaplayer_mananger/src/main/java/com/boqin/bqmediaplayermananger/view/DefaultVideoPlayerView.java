@@ -74,6 +74,7 @@ public class DefaultVideoPlayerView extends ScalableTextureView implements Textu
 
     public void setPath(String path) {
         mPath = path;
+        mNEMediaPlayerManager.initKey(path);
         mNEMediaPlayerManager.addSizeGotCallback(mPath, new NEMediaPlayerManager.OnSizeGotCallback() {
             @Override
             public void onVideoSizeGot(int width, int height) {
@@ -86,6 +87,15 @@ public class DefaultVideoPlayerView extends ScalableTextureView implements Textu
             }
         });
     }
+
+    public Surface getSurface(){
+        return mSurface;
+    }
+
+//    public void setSurface(Surface surface){
+//        mSurface = surface;
+//        mNEMediaPlayerManager.switchSurface();
+//    }
 
     private void refreshSurface(){
 
@@ -108,6 +118,10 @@ public class DefaultVideoPlayerView extends ScalableTextureView implements Textu
 
     public void pause(){
         mNEMediaPlayerManager.pause(mPath);
+    }
+
+    public void resume(){
+        mNEMediaPlayerManager.resume(mPath);
     }
 
     public void release(){

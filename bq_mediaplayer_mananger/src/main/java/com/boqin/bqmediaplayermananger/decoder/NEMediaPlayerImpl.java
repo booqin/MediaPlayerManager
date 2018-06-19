@@ -62,7 +62,7 @@ public class NEMediaPlayerImpl implements IMediaPlayer {
 
     @Override
     public void performPause() {
-        if (mMediaPlayer != null && !mMediaPlayer.isPlaying()) {
+        if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
         }
     }
@@ -89,7 +89,7 @@ public class NEMediaPlayerImpl implements IMediaPlayer {
 
     @Override
     public long getCurrentPosition() {
-        return 0;
+        return mMediaPlayer.getCurrentPosition();
     }
 
     @Override

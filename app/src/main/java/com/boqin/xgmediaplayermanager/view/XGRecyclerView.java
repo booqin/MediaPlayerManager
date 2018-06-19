@@ -1,7 +1,7 @@
 package com.boqin.xgmediaplayermanager.view;
 
 import com.boqin.bqmediaplayermananger.view.IPlayerAttacher;
-import com.boqin.bqmediaplayermananger.utils.VideoRecyclerViewAutoControlAttacher;
+import com.boqin.bqmediaplayermananger.utils.VideoRecyclerViewAutoControlAttache;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -20,7 +20,7 @@ import android.util.AttributeSet;
 public class XGRecyclerView extends RecyclerView{
 
 
-    private VideoRecyclerViewAutoControlAttacher mAutoControlAttacher;
+    private VideoRecyclerViewAutoControlAttache mAutoControlAttache;
     private boolean mIsFromPause = false;
 
     private String mHolderKeyToRecover = null;
@@ -91,8 +91,8 @@ public class XGRecyclerView extends RecyclerView{
         super.setLayoutManager(layoutManager);
         //        super.setAdapter(adapter, isLoadMoreNeed);
         super.setAdapter(adapter);
-        mAutoControlAttacher = new VideoRecyclerViewAutoControlAttacher();//ViewRecycler与视频播放的连接器，管理着Recycler的滑动以及对应情况下ViewVideoPlayNEContent相关操作。
-        mAutoControlAttacher.attach(this);//连接Recycler
+        mAutoControlAttache = new VideoRecyclerViewAutoControlAttache();//ViewRecycler与视频播放的连接器，管理着Recycler的滑动以及对应情况下ViewVideoPlayNEContent相关操作。
+        mAutoControlAttache.attach(this);//连接Recycler
 
     }
 
@@ -101,7 +101,7 @@ public class XGRecyclerView extends RecyclerView{
      * 务必在 onDestroy 中调用，否则可能出现内存泄漏
      */
     public void release() {
-        mAutoControlAttacher.releaseResources();
+        mAutoControlAttache.releaseResources();
         if (getLayoutManager() != null && getLayoutManager() instanceof LinearLayoutManager) {
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) getLayoutManager();
             int i = linearLayoutManager.findFirstVisibleItemPosition();
@@ -121,10 +121,10 @@ public class XGRecyclerView extends RecyclerView{
      */
     public void actionsForOnPause() {
         mIsFromPause = true;
-        if (mAutoControlAttacher != null) {
-            if (mAutoControlAttacher.getCurrentActiveKey() != null) {
+        if (mAutoControlAttache != null) {
+            if (mAutoControlAttache.getCurrentActiveKey() != null) {
                 //当前在播放的key
-                mHolderKeyToRecover = mAutoControlAttacher.getCurrentActiveKey();
+                mHolderKeyToRecover = mAutoControlAttache.getCurrentActiveKey();
                 //循环获取可见item的ViewHolder
                 for (int i = mLayoutManager.findFirstVisibleItemPosition(), j = mLayoutManager.findLastVisibleItemPosition(); i <= j; i++) {
                     RecyclerView.ViewHolder holder = findViewHolderForAdapterPosition(i);

@@ -17,7 +17,7 @@ import android.support.v7.widget.RecyclerView;
  * @author hzwangyufei
  * @date 2016/4/14
  */
-public final class VideoRecyclerViewAutoControlAttacher{
+public final class VideoRecyclerViewAutoControlAttache {
     private static final long FIRST_CHECK_DELAY = 500L;
 
     private int mScrollDirection = ScrollDirectionDetector.IDLE;
@@ -50,7 +50,7 @@ public final class VideoRecyclerViewAutoControlAttacher{
 
     private String mCurrentActiveKey = null;
 
-    public VideoRecyclerViewAutoControlAttacher() {
+    public VideoRecyclerViewAutoControlAttache() {
         mRect4UpDeactivate = new Rect();
         mRect4UpActivate = new Rect();
         mRect4DownDeactivate = new Rect();
