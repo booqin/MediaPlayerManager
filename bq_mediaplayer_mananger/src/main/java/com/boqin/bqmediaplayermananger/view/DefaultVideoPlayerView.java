@@ -5,6 +5,7 @@ import com.boqin.bqmediaplayermananger.manager.NEMediaPlayerManager;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 
@@ -27,6 +28,8 @@ public class DefaultVideoPlayerView extends ScalableTextureView implements Textu
 
     private Surface mSurface;
 
+    private boolean isAuto;
+
     public DefaultVideoPlayerView(Context context) {
         super(context);
         init();
@@ -47,7 +50,12 @@ public class DefaultVideoPlayerView extends ScalableTextureView implements Textu
         mSurfaceAvailable = true;
         mSurface = new Surface(surface);
         if (mSurfaceAvailableCallback) {
+            //在ST不可用的情况下执行activate，会在初始化完成后再次执行activate
+            mSurfaceAvailableCallback = false;
             activate();
+        }else {
+            //ST更新后需要播放器更新producter
+            mNEMediaPlayerManager.switchSurface(mPath, mSurface);
         }
     }
 
@@ -67,6 +75,7 @@ public class DefaultVideoPlayerView extends ScalableTextureView implements Textu
     public void onSurfaceTextureUpdated(SurfaceTexture surface) {
 
     }
+
 
     public boolean isSurfaceAvailable() {
         return mSurfaceAvailable;
@@ -104,11 +113,11 @@ public class DefaultVideoPlayerView extends ScalableTextureView implements Textu
     private void init() {
         mNEMediaPlayerManager = NEMediaPlayerManager.getInstance();
         setSurfaceTextureListener(this);
-
+        isAuto = true;
     }
 
     public void activate(){
-        if(isSurfaceAvailable()){
+        if(isSurfaceAvailable()){ //surface可用
             mNEMediaPlayerManager.openVideo(mPath, mPath, mSurface, false, this.getContext());
         }else {
             setNeedsSurfaceAvailableCallback(true);
@@ -116,11 +125,30 @@ public class DefaultVideoPlayerView extends ScalableTextureView implements Textu
 
     }
 
-    public void pause(){
+    /**
+     * 恢复之前的操作
+     */
+    public void recover(){
+        if (isAuto) {
+            resume();
+        }
+    }
+
+    /**
+     * 暂停解密播放
+     * @param isAuto 是否自动恢复，与recover对应
+     */
+    public void pause(boolean isAuto){
+        this.isAuto = isAuto;
         mNEMediaPlayerManager.pause(mPath);
     }
 
+    public void pause(){
+        pause(false);
+    }
+
     public void resume(){
+        isAuto = true;
         mNEMediaPlayerManager.resume(mPath);
     }
 

@@ -27,6 +27,18 @@ public class FullScreenActivity extends Activity{
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mVideoPlayerView.recover();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mVideoPlayerView.pause(true);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
     }

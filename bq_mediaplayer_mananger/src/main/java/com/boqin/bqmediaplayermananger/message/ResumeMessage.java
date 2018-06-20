@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import junit.framework.Assert;
+
 /**
  * 继续操作Message
  * Created by Boqin on 2016/10/27.
@@ -48,7 +50,9 @@ public class ResumeMessage extends IPlayerMessage {
             return;
         }
         IMediaPlayer mediaPlayer = pool.get(mKey);
-        mediaPlayer.performStart();
+        if (mediaPlayer!=null) {
+            mediaPlayer.performStart();
+        }
     }
 
     @Override

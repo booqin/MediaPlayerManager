@@ -254,7 +254,7 @@ public class NEMediaPlayerManager implements Handler.Callback {
 
     }
 
-    private void start(String key){
+    public void start(String key){
         StartMessage startMessage = new StartMessage(mPoolHandler, key);
         startMessage.sendToTarget();
     }

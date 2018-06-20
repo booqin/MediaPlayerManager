@@ -51,6 +51,9 @@ public class SeekMessage extends IPlayerMessage {
         }
 
         IMediaPlayer player = pool.get(mKey);
+        if (player == null) {
+            return;
+        }
         player.performSeek(mPos);
     }
 
